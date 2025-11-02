@@ -1,0 +1,33 @@
+/** @format */
+body {
+  background-color: #e5e5e5;
+}
+
+.st-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #e5e5e5;
+}
+
+.st-form {
+  border: 2px solid black;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 350px;
+}
+
+input {
+  margin: 10px;
+  padding: 5px;
+  width: 80%;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+.form-control {
+  margin-left: 0px !important;
+}
