@@ -92,7 +92,7 @@ const ComplaintTable = () => {
         maxWidth: "1060px",
         position: "absolute",
         paddingBottom: "10px",
-        top: "100px",
+        top: "120px",
         left: "300px",
       }}
     >

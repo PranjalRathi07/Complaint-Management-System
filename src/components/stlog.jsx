@@ -2,6 +2,7 @@
 import { motion } from "motion/react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import TextType from "../animetion/TextType";
 
 const Stlog = () => {
   const [formData, setFormData] = useState({
@@ -40,6 +41,16 @@ const Stlog = () => {
 
   return (
     <div className="st-container">
+      <TextType
+        style={{
+          margin: "50px",
+          fontSize: "80px",
+          fontWeight: "900",
+          color: "#FFA500",
+          whiteSpace: "pre-line",
+        }}
+        text={"Online\nComplaint\nManagement\nSystem."}
+      ></TextType>
       <motion.form
         onSubmit={handleSubmit}
         className="st-form"
@@ -50,34 +61,44 @@ const Stlog = () => {
           delay: 0.3,
           ease: [0, 0.71, 0.2, 1.01],
         }}
+        style={{ width: "490px" }}
       >
         <h1>Student Login.</h1>
-        <input
-          type="text"
-          placeholder="Email"
-          name="email"
-          required
-          value={formData.email}
-          onChange={handleChange}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          name="password"
-          required
-          value={formData.password}
-          onChange={handleChange}
-        />
+        <div class="form-floating mb-3">
+          <input
+            type="email"
+            class="form-control"
+            id="floatingInput"
+            placeholder="name@example.com"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+          />
+          <label for="floatingInput">Email address</label>
+        </div>
+        <div class="form-floating">
+          <input
+            type="password"
+            class="form-control"
+            id="floatingPassword"
+            placeholder="Password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+          />
+          <label for="floatingPassword">Password</label>
+        </div>
         <button
-          className="badge text-bg-warning rounded-pill"
+          type="submit"
+          class="btn btn-outline-warning rounded-pill"
           style={{
-            border: "0px",
             padding: "10px",
             marginTop: "10px",
             cursor: "pointer",
-            width: "87%",
+            width: "100%",
+            fontSize: "16px",
+            fontWeight: "900",
           }}
-          type="submit"
         >
           Submit
         </button>

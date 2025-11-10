@@ -4,6 +4,11 @@ import express from "express";
 import { mongoose } from "mongoose";
 import cors from "cors";
 import jwt from "jsonwebtoken";
+import "dotenv/config";
+import sgMail from "@sendgrid/mail";
+import bcrypt from "bcrypt";
+
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const app = express();
 app.use(express.json());
@@ -41,6 +46,36 @@ const complaintSchema = new mongoose.Schema({
 
 const Complaint = mongoose.model("Complaint", complaintSchema, "Complaints");
 
+app.post("/api/Student/register", async (req, res) => {
+  try {
+    const { Name, email, password } = req.body;
+
+    // Check if user already exists
+    const existingStudent = await Student.findOne({ email });
+    if (existingStudent) {
+      return res.json({ success: false, message: "Email already in use." });
+    }
+
+    // Hash the password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    // Create new student
+    const newStudent = new Student({
+      Name,
+      email,
+      password: hashedPassword,
+    });
+
+    await newStudent.save();
+
+    res.json({ success: true, message: "Student registered successfully!" });
+  } catch (error) {
+    console.error("Error registering student:", error);
+    res.status(500).json({ success: false, message: "Server error." });
+  }
+});
+
 // Student Login Route
 app.post("/api/Student/login", async (req, res) => {
   const { email, password } = req.body;
@@ -50,7 +85,7 @@ app.post("/api/Student/login", async (req, res) => {
   if (!user) return res.json({ success: false, message: "User not found" });
 
   // Compare password
-  const isMatch = user.password === password;
+  const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch)
     return res.json({ success: false, message: "Invalid credentials" });
 
@@ -190,6 +225,38 @@ app.patch("/api/Complaints/:id/status", async (req, res) => {
       return res
         .status(404)
         .json({ success: false, message: "Complaint not found" });
+    }
+
+    try {
+      const userEmail = updatedComplaint.email;
+      const userName = updatedComplaint.name;
+      const newStatus = updatedComplaint.status;
+
+      const msg = {
+        to: userEmail,
+        from: "rathipranjal123@gmail.com",
+        subject: `Your Complaint Status has been Updated: ${newStatus}`,
+        html: `
+          <div style="font-family: Arial, sans-serif; line-height: 1.6;">
+            <h2>Complaint Status Update</h2>
+            <p>Hello ${userName},</p>
+            <p>This is an automated notification to let you know that the status of your complaint has been updated.</p>
+            <hr>
+            <p><strong>Subject:</strong> ${updatedComplaint.Subject}</p>
+            <p><strong>New Status:</strong> <strong style="font-size: 1.2em;">${newStatus}</strong></p>
+            <hr>
+            <p>Thank you for your feedback.</p>
+          </div>
+        `,
+      };
+
+      // Send the email
+      await sgMail.send(msg);
+    } catch (emailError) {
+      console.error("Error sending status email:", emailError);
+      if (emailError.response) {
+        console.error(emailError.response.body);
+      }
     }
 
     res.json({ success: true, data: updatedComplaint });

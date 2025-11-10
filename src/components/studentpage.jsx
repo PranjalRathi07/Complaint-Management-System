@@ -5,6 +5,8 @@ import Stcards from "./studentComplaintCards";
 import RegisterComplaint from "./register-complaint";
 import Mycomplaintpage from "./complaintpage";
 import GraphView from "./graphview";
+import BlurText from "../animetion/BlurText";
+import TextType from "../animetion/TextType";
 
 const StudentPage = () => {
   const [Student, setStudent] = useState(null);
@@ -56,14 +58,18 @@ const StudentPage = () => {
             padding: "10px",
           }}
         >
-          {" "}
-          Hello, {Student ? Student.Name : "Loading..."}
-        </div>{" "}
+          <BlurText text={`Hello, ${Student ? Student.Name : "Loading..."}`}>
+            {" "}
+          </BlurText>
+          <strong style={{ color: "#fca311" }}>
+            <TextType text="Online Complaint Management System."></TextType>
+          </strong>
+        </div>
       </nav>
       <div
         className="d-flex flex-column flex-shrink-0 "
         style={{
-          width: "240px",
+          width: "290px",
           minHeight: "100vh",
           position: "fixed",
           paddingTop: "100px",
@@ -73,7 +79,14 @@ const StudentPage = () => {
         {" "}
         <ul className="nav nav-pills flex-column mb-auto">
           {" "}
-          <li className="nav-item">
+          <li
+            className="nav-item"
+            style={{
+              marginTop: "10px",
+              marginLeft: "5px",
+              marginBottom: "10px",
+            }}
+          >
             {" "}
             <a
               href="?page=dashboard"
@@ -95,7 +108,12 @@ const StudentPage = () => {
               Dashboard
             </a>{" "}
           </li>{" "}
-          <li>
+          <li
+            style={{
+              marginLeft: "5px",
+              marginBottom: "10px",
+            }}
+          >
             {" "}
             <a
               href="?page=register-complaint"
@@ -120,7 +138,12 @@ const StudentPage = () => {
               Register Complaint
             </a>{" "}
           </li>{" "}
-          <li>
+          <li
+            style={{
+              marginLeft: "5px",
+              marginBottom: "10px",
+            }}
+          >
             {" "}
             <a
               href="?page=my-complaint"
@@ -145,7 +168,12 @@ const StudentPage = () => {
               My Complaint
             </a>{" "}
           </li>{" "}
-          <li>
+          <li
+            style={{
+              marginLeft: "5px",
+              marginBottom: "10px",
+            }}
+          >
             {" "}
             <a
               href="?page=graph-view"

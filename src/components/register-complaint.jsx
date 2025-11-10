@@ -59,8 +59,8 @@ const RegisterComplaint = () => {
         maxWidth: "850px",
         position: "absolute",
         paddingBottom: "10px",
-        top: "100px",
-        left: "300px",
+        top: "150px",
+        left: "370px",
       }}
       onSubmit={handleSubmit}
     >
@@ -129,8 +129,19 @@ const RegisterComplaint = () => {
       </div>
 
       <div className="col-12">
-        <button type="submit" className="btn btn-primary">
-          Register
+        <button
+          type="submit"
+          class="btn btn-outline-warning rounded-pill"
+          style={{
+            padding: "10px",
+            marginTop: "10px",
+            cursor: "pointer",
+            width: "100%",
+            fontSize: "16px",
+            fontWeight: "900",
+          }}
+        >
+          Submit
         </button>
       </div>
     </form>

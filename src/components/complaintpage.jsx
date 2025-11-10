@@ -73,18 +73,19 @@ const Mycomplaintpage = () => {
         maxWidth: "1060px",
         position: "absolute",
         paddingBottom: "10px",
-        top: "100px",
-        left: "300px",
+        marginRight: "20px",
+        top: "110px",
+        left: "330px",
       }}
     >
       {Complaints.length > 0 ? (
         <table className="table" style={tableStyle}>
           <thead>
             <tr>
-              <th scope="col" style={{ width: "17%" }}>
+              <th scope="col" style={{ width: "10%" }}>
                 Subject
               </th>
-              <th scope="col" style={{ width: "55%" }}>
+              <th scope="col" style={{ width: "15%" }}>
                 Complaint
               </th>
               <th scope="col" style={{ width: "10%" }}>

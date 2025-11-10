@@ -3,6 +3,9 @@
 import { useEffect, useState } from "react";
 import AdminCard from "./adminComplaintCards";
 import ComplaintTable from "./complaint-table";
+import BlurText from "../animetion/BlurText";
+import RegisterStudent from "./registerStudent";
+import TextType from "../animetion/TextType";
 
 const AdminPage = () => {
   const [Admin, setAdmin] = useState(null);
@@ -53,7 +56,12 @@ const AdminPage = () => {
           }}
         >
           {" "}
-          Hello, {Admin ? Admin.Name : "Loading..."}
+          <BlurText text={`Hello, ${Admin ? Admin.Name : "Loading..."}`}>
+            {" "}
+          </BlurText>
+          <strong style={{ color: "#fca311" }}>
+            <TextType text="Online Complaint Management System."></TextType>
+          </strong>
         </div>{" "}
       </nav>
       <div
@@ -69,7 +77,14 @@ const AdminPage = () => {
         {" "}
         <ul className="nav nav-pills flex-column mb-auto">
           {" "}
-          <li className="nav-item">
+          <li
+            className="nav-item"
+            style={{
+              marginTop: "10px",
+              marginLeft: "5px",
+              marginBottom: "10px",
+            }}
+          >
             {" "}
             <a
               href="?page=Admin Dashboard"
@@ -95,7 +110,12 @@ const AdminPage = () => {
               Admin Dashboard
             </a>{" "}
           </li>{" "}
-          <li>
+          <li
+            style={{
+              marginLeft: "5px",
+              marginBottom: "10px",
+            }}
+          >
             {" "}
             <a
               href="?page=Complaint Table"
@@ -120,16 +140,21 @@ const AdminPage = () => {
               Complaint Table
             </a>{" "}
           </li>{" "}
-          <li>
+          <li
+            style={{
+              marginLeft: "5px",
+              marginBottom: "10px",
+            }}
+          >
             {" "}
             <a
-              href="?page=my-complaint"
+              href="?page=Register Student"
               onClick={(e) => {
                 e.preventDefault();
-                handleNav("my-complaint");
+                handleNav("Register Student");
               }}
               className={`nav-link ${
-                Activepg === "my-complaint" ? "active" : ""
+                Activepg === "Register Student" ? "active" : ""
               }`}
               style={{ color: "white" }}
             >
@@ -142,7 +167,7 @@ const AdminPage = () => {
               >
                 <use xlinkHref="#table"></use>
               </svg>
-              My Complaint
+              Register Student
             </a>{" "}
           </li>{" "}
           <li style={{ position: "absolute", bottom: "20px" }}>
@@ -152,7 +177,7 @@ const AdminPage = () => {
               style={{ color: "white" }}
               onClick={(e) => {
                 e.preventDefault();
-                localStorage.removeItem("StudentEmail");
+                localStorage.removeItem("AdminEmail");
                 window.location.href = "/";
               }}
             >
@@ -172,6 +197,7 @@ const AdminPage = () => {
       </div>
       {Activepg === "Admin Dashboard" && <AdminCard />}
       {Activepg === "Complaint Table" && <ComplaintTable />}
+      {Activepg === "Register Student" && <RegisterStudent />}
     </div>
   );
 };

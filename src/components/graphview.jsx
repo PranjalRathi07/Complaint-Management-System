@@ -75,7 +75,7 @@ const GraphView = () => {
         margin: "auto",
         paddingTop: "20px",
         position: "absolute",
-        left: "500px",
+        left: "560px",
         top: "100px",
       }}
     >

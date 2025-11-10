@@ -58,7 +58,7 @@ const Stcards = () => {
           minHeight: "9rem",
           maxHeight: "9rem",
           position: "absolute",
-          left: "300px",
+          left: "330px",
           top: "130px",
         }}
       >
@@ -82,7 +82,7 @@ const Stcards = () => {
           minHeight: "9rem",
           maxHeight: "9rem",
           position: "absolute",
-          left: "620px",
+          left: "650px",
           top: "130px",
         }}
       >
@@ -106,7 +106,7 @@ const Stcards = () => {
           minHeight: "9rem",
           maxHeight: "9rem",
           position: "absolute",
-          left: "300px",
+          left: "330px",
           top: "300px",
         }}
       >
@@ -130,14 +130,14 @@ const Stcards = () => {
           minHeight: "9rem",
           maxHeight: "9rem",
           position: "absolute",
-          left: "620px",
+          left: "650px",
           top: "300px",
         }}
       >
-        <div className="card-header">Peanding Complaint</div>
+        <div className="card-header">Pending Complaint</div>
         <div className="card-body">
           <h5 className="card-title">
-            Your Peanding Complaint: <br />
+            Your Pending Complaint: <br />
             <br />
             {pendingCount}
           </h5>
