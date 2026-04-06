@@ -32,7 +32,7 @@ const Mycomplaintpage = () => {
 
       try {
         const response = await fetch(
-          `http://localhost:5000/api/Complaints/user/${userEmail}`
+          `${import.meta.env.VITE_API_URL}/api/Complaints/user/${userEmail}`
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");

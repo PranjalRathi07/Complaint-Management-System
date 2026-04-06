@@ -22,7 +22,7 @@ const StudentRegistration = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/Student/register",
+        `${import.meta.env.VITE_API_URL}/api/Student/register`,
         {
           method: "POST",
           headers: {

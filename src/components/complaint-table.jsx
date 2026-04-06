@@ -22,7 +22,7 @@ const ComplaintTable = () => {
   useEffect(() => {
     const fetchComplaints = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/Complaints");
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/Complaints`);
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -43,7 +43,7 @@ const ComplaintTable = () => {
   const handleStatusChange = async (id, newStatus) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/Complaints/${id}/status`,
+        `${import.meta.env.VITE_API_URL}/api/Complaints/${id}/status`,
         {
           method: "PATCH",
           headers: {

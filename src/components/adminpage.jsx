@@ -19,7 +19,7 @@ const AdminPage = () => {
     const email = localStorage.getItem("AdminEmail");
     if (!email) return;
 
-    fetch(`http://localhost:5000/api/Admin/email/${encodeURIComponent(email)}`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/Admin/email/${encodeURIComponent(email)}`)
       .then((res) => res.json())
       .then((data) => {
         setAdmin(data);

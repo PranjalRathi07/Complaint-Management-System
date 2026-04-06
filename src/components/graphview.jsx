@@ -11,7 +11,7 @@ const GraphView = () => {
   useEffect(() => {
     const fetchComplaintData = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/Complaints");
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/Complaints`);
         if (!response.ok) {
           throw new Error("Data fetching failed");
         }

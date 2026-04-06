@@ -21,7 +21,7 @@ const StudentPage = () => {
     if (!email) return;
 
     fetch(
-      `http://localhost:5000/api/Student/email/${encodeURIComponent(email)}`
+      `${import.meta.env.VITE_API_URL}/api/Student/email/${encodeURIComponent(email)}`
     )
       .then((res) => res.json())
       .then((data) => {
